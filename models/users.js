@@ -36,3 +36,6 @@ const userSchema = new mongoose.Schema({
 });
 
 export default mongoose.model("User", userSchema);
+
+// .model() function makes a copy of schema.
+// The first argument is the singular name of the collection your model is for. Mongoose automatically looks for the plural, lowercase version of your model name and populate your database.
