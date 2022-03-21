@@ -23,10 +23,11 @@ const jobSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { strict: false }
+  { strict: false } // when using strict: false there is no limitation on adding new fields to the schema on the frontend. So, we only limit the schema to the required fields.
 );
 
 const userSchema = new mongoose.Schema({
+  // id will be automatically created from auth0 and we are making the field mandatory.
   _id: {
     type: String,
     required: true,
@@ -35,3 +36,6 @@ const userSchema = new mongoose.Schema({
 });
 
 export default mongoose.model("User", userSchema);
+
+// .model() function makes a copy of schema.
+// The first argument is the singular name of the collection your model is for. Mongoose automatically looks for the plural, lowercase version of your model name and populate your database.

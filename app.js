@@ -4,8 +4,7 @@ import usersRouter from "./routes/users.js";
 import mongoose from "mongoose";
 import resourcesRouter from "./routes/resources.js";
 
-const app = express();
-
+// connect to Mongoose database via the credentials defined on .env file
 mongoose.connect(
   process.env.NODE_ENV === "test"
     ? process.env.TEST_DATABASE_URL
@@ -13,8 +12,12 @@ mongoose.connect(
 );
 export const db = mongoose.connection;
 
+// check the connection
 db.on("error", (error) => console.log(error));
 db.once("open", () => console.log("Connected to Database"));
+
+// .use add a middleware
+const app = express();
 
 app.use(express.json());
 
